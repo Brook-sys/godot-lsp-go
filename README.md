@@ -14,6 +14,7 @@ Godot exposes its GDScript LSP over TCP, while tools like OpenCode, Cursor, Clau
 - Windows file URI normalization
 - OpenCode `plaintext` → `gdscript` patch for `.gd` and `.gdshader`
 - optional Godot auto-launch with `--launch`
+- remote Godot support with bidirectional `--path-map`
 - stderr/file logging only, never stdout
 
 ## Install
@@ -71,6 +72,7 @@ With auto-launch:
 - [Configuration](docs/configuration.md)
 - [OpenCode](docs/opencode.md)
 - [Godot launch](docs/godot-launch.md)
+- [Remote connections](docs/remote.md)
 - [Troubleshooting](docs/troubleshooting.md)
 - [Architecture](docs/architecture.md)
 - [Real Godot E2E tests](docs/e2e.md)

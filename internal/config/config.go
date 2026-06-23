@@ -8,6 +8,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/code-xhyun/godot-lsp-go/internal/rewriter"
 	"github.com/code-xhyun/godot-lsp-go/internal/version"
 )
 
@@ -29,6 +30,7 @@ type Config struct {
 	MaxPendingMessages int
 	NormalizeURIs      bool
 	PatchOpenCode      bool
+	PathMaps           []rewriter.PathMap
 	Debug              bool
 	Quiet              bool
 	LogFile            string
@@ -59,6 +61,10 @@ func Parse(args []string) (Config, error) {
 
 	fs := flag.NewFlagSet("godot-lsp-go", flag.ContinueOnError)
 	ports := intsToCSV(cfg.Ports)
+	var pathMaps repeatedString
+	if envMap := os.Getenv("GODOT_LSP_PATH_MAP"); envMap != "" {
+		_ = pathMaps.Set(envMap)
+	}
 	fs.StringVar(&cfg.Host, "host", cfg.Host, "Godot LSP host")
 	fs.String("port", "", "fixed Godot LSP port")
 	fs.StringVar(&ports, "ports", ports, "comma-separated Godot LSP ports")
@@ -81,6 +87,7 @@ func Parse(args []string) (Config, error) {
 	noNormalize := fs.Bool("no-normalize-uris", false, "disable URI normalization")
 	fs.BoolVar(&cfg.PatchOpenCode, "patch-opencode", cfg.PatchOpenCode, "patch OpenCode plaintext languageId")
 	noPatch := fs.Bool("no-patch-opencode", false, "disable OpenCode patch")
+	fs.Var(&pathMaps, "path-map", "path mapping in client-root=godot-root format; repeatable")
 	fs.BoolVar(&cfg.Debug, "debug", cfg.Debug, "enable debug logs")
 	fs.BoolVar(&cfg.Quiet, "quiet", cfg.Quiet, "reduce logs")
 	fs.StringVar(&cfg.LogFile, "log-file", cfg.LogFile, "log file path")
@@ -114,6 +121,11 @@ func Parse(args []string) (Config, error) {
 	if *noPatch {
 		cfg.PatchOpenCode = false
 	}
+	maps, err := parsePathMaps(pathMaps)
+	if err != nil {
+		return cfg, err
+	}
+	cfg.PathMaps = maps
 	if cfg.ShowVersion {
 		fmt.Printf("godot-lsp-go %s (%s, %s)\n", version.Version, version.Commit, version.Date)
 	}
@@ -180,4 +192,33 @@ func firstNonEmpty(values ...string) string {
 		}
 	}
 	return ""
+}
+
+type repeatedString []string
+
+func (r *repeatedString) String() string {
+	return strings.Join(*r, ";")
+}
+
+func (r *repeatedString) Set(value string) error {
+	*r = append(*r, value)
+	return nil
+}
+
+func parsePathMaps(values []string) ([]rewriter.PathMap, error) {
+	var maps []rewriter.PathMap
+	for _, value := range values {
+		for _, part := range strings.Split(value, ";") {
+			part = strings.TrimSpace(part)
+			if part == "" {
+				continue
+			}
+			m, err := rewriter.ParsePathMap(part)
+			if err != nil {
+				return nil, err
+			}
+			maps = append(maps, m)
+		}
+	}
+	return rewriter.NormalizePathMaps(maps), nil
 }

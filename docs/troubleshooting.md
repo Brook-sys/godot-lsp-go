@@ -31,3 +31,13 @@ The OpenCode patch is enabled by default. If it causes issues, disable it with `
 ## Linux headless
 
 Use `--launch --headless`. If your environment requires a display, install `xvfb-run` and configure `--xvfb auto`.
+
+## Remote Godot finds the wrong files
+
+If OpenCode and Godot see the same project at different absolute paths, configure `--path-map`.
+
+```bash
+godot-lsp-go --path-map /home/alpine/game=C:/Users/Murilo/Godot/game
+```
+
+Use SSH tunneling instead of exposing the Godot LSP port directly. See [Remote connections](remote.md).

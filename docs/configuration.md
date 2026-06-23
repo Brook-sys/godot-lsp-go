@@ -40,9 +40,18 @@ godot-lsp-go --debug --log-file /tmp/godot-lsp-go.log
 GODOT_LSP_HOST
 GODOT_LSP_PORT
 GODOT_LSP_PORTS
+GODOT_LSP_PATH_MAP
 GODOT_LSP_BRIDGE_DEBUG
 GODOT_LSP_BRIDGE_LOG
 GODOT_PATH
 GODOT_PROJECT
 OPENCODE_PROJECT_ROOT
 ```
+
+## Remote path mapping
+
+```bash
+godot-lsp-go --path-map /client/project=/godot/project
+```
+
+`--path-map` can be repeated. See [Remote connections](remote.md).

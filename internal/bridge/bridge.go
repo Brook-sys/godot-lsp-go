@@ -110,7 +110,7 @@ func (b *Bridge) readStdin(ctx context.Context) {
 			return
 		}
 		b.guard.TrackClientMessage(msg)
-		msg.Body = rewriter.Rewrite(msg.Body, rewriter.Options{NormalizeURIs: b.cfg.NormalizeURIs, PatchOpenCode: b.cfg.PatchOpenCode})
+		msg.Body = rewriter.Rewrite(msg.Body, rewriter.Options{NormalizeURIs: b.cfg.NormalizeURIs, PatchOpenCode: b.cfg.PatchOpenCode, PathMaps: b.cfg.PathMaps, Direction: rewriter.ClientToGodot})
 		if b.getConn() == nil {
 			b.queue.Push(msg)
 			continue
@@ -139,6 +139,7 @@ func (b *Bridge) readTCP(ctx context.Context, conn net.Conn) {
 			return
 		}
 		for _, out := range b.guard.HandleServerMessage(msg) {
+			out.Body = rewriter.Rewrite(out.Body, rewriter.Options{NormalizeURIs: b.cfg.NormalizeURIs, PathMaps: b.cfg.PathMaps, Direction: rewriter.GodotToClient})
 			if err := b.writer.WriteMessage(out); err != nil {
 				b.log.Warn("stdout write failed: %v", err)
 				return
