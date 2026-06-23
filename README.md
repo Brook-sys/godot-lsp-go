@@ -73,6 +73,7 @@ With auto-launch:
 - [Godot launch](docs/godot-launch.md)
 - [Troubleshooting](docs/troubleshooting.md)
 - [Architecture](docs/architecture.md)
+- [Real Godot E2E tests](docs/e2e.md)
 - [Development](docs/development.md)
 
 ## License
