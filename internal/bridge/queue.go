@@ -1,6 +1,6 @@
 package bridge
 
-import "github.com/code-xhyun/godot-lsp-go/internal/lsp"
+import "github.com/Brook-sys/godot-lsp-go/internal/lsp"
 
 type Queue struct {
 	items []lsp.Message

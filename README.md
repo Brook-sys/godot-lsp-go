@@ -19,9 +19,29 @@ Godot exposes its GDScript LSP over TCP, while tools like OpenCode, Cursor, Clau
 
 ## Install
 
-Download a release binary from GitHub Releases and place it in your `PATH`.
+Download a release binary from [GitHub Releases](https://github.com/Brook-sys/godot-lsp-go/releases/latest) and place it in your `PATH`.
+
+Linux x86_64:
+
+```bash
+curl -L -o godot-lsp-go.tar.gz https://github.com/Brook-sys/godot-lsp-go/releases/latest/download/godot-lsp-go_linux_amd64.tar.gz
+tar -xzf godot-lsp-go.tar.gz
+chmod +x godot-lsp-go
+sudo mv godot-lsp-go /usr/local/bin/
+```
+
+Windows users should download `godot-lsp-go_windows_amd64.zip`, extract `godot-lsp-go.exe`, and add the folder to `PATH`.
+
+See [Installation](docs/installation.md) for all platforms.
 
 ## Usage
+
+Verify installation:
+
+```bash
+godot-lsp-go --version
+```
+
 
 Default mode does not launch Godot automatically:
 
@@ -69,6 +89,7 @@ With auto-launch:
 
 ## Documentation
 
+- [Installation](docs/installation.md)
 - [Configuration](docs/configuration.md)
 - [OpenCode](docs/opencode.md)
 - [Godot launch](docs/godot-launch.md)

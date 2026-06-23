@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/code-xhyun/godot-lsp-go/internal/rewriter"
-	"github.com/code-xhyun/godot-lsp-go/internal/version"
+	"github.com/Brook-sys/godot-lsp-go/internal/rewriter"
+	"github.com/Brook-sys/godot-lsp-go/internal/version"
 )
 
 type Config struct {

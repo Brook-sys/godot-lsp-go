@@ -9,11 +9,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/code-xhyun/godot-lsp-go/internal/bridge"
-	"github.com/code-xhyun/godot-lsp-go/internal/config"
-	"github.com/code-xhyun/godot-lsp-go/internal/connector"
-	"github.com/code-xhyun/godot-lsp-go/internal/godot"
-	"github.com/code-xhyun/godot-lsp-go/internal/logging"
+	"github.com/Brook-sys/godot-lsp-go/internal/bridge"
+	"github.com/Brook-sys/godot-lsp-go/internal/config"
+	"github.com/Brook-sys/godot-lsp-go/internal/connector"
+	"github.com/Brook-sys/godot-lsp-go/internal/godot"
+	"github.com/Brook-sys/godot-lsp-go/internal/logging"
 )
 
 func main() {

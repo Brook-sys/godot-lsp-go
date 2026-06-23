@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 
-	"github.com/code-xhyun/godot-lsp-go/internal/lsp"
+	"github.com/Brook-sys/godot-lsp-go/internal/lsp"
 )
 
 type Guard struct {

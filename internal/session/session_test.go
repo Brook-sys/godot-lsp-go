@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/code-xhyun/godot-lsp-go/internal/lsp"
+	"github.com/Brook-sys/godot-lsp-go/internal/lsp"
 )
 
 func TestInitializeGuardBuffersNotifications(t *testing.T) {

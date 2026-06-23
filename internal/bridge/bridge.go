@@ -9,12 +9,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/code-xhyun/godot-lsp-go/internal/config"
-	"github.com/code-xhyun/godot-lsp-go/internal/connector"
-	"github.com/code-xhyun/godot-lsp-go/internal/logging"
-	"github.com/code-xhyun/godot-lsp-go/internal/lsp"
-	"github.com/code-xhyun/godot-lsp-go/internal/rewriter"
-	"github.com/code-xhyun/godot-lsp-go/internal/session"
+	"github.com/Brook-sys/godot-lsp-go/internal/config"
+	"github.com/Brook-sys/godot-lsp-go/internal/connector"
+	"github.com/Brook-sys/godot-lsp-go/internal/logging"
+	"github.com/Brook-sys/godot-lsp-go/internal/lsp"
+	"github.com/Brook-sys/godot-lsp-go/internal/rewriter"
+	"github.com/Brook-sys/godot-lsp-go/internal/session"
 )
 
 type Bridge struct {

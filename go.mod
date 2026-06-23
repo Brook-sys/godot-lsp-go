@@ -1,3 +1,3 @@
-module github.com/code-xhyun/godot-lsp-go
+module github.com/Brook-sys/godot-lsp-go
 
-go 1.25.10
+go 1.22
