@@ -1,5 +1,6 @@
 bin/
 dist/
 *.log
+/godot-lsp-go
 godot.zip
 Godot_*
